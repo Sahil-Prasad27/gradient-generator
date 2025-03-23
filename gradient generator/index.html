@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section>
+            <div>
+                <button id="myButton">#051936</button>
+                <button id="myButton2">#985674</button>
+            </div>
+            <h2>Click To Copy This Code </h2>
+            <div class="copyCode">
+                background-image: linear-gradient(to right, #000,#fff)
+            </div>
+        </section>
+
+        <script>
+        let btn1 = document.getElementById("myButton");
+        let btn2 = document.getElementById("myButton2");
+        let copydiv = document.querySelector(".copyCode");
+        let rgb1="#000";
+        let rgb2="#fff";
+        
+        const hexValues = () =>{
+            let myHexaValues ="0123456789abcdef";
+            
+            let colors ="#";
+            for(i=0;i<6;i++){
+                colors=colors+myHexaValues[Math.floor(Math.random()*16)];
+            }
+            return colors;
+
+        }
+
+
+        const handleButton1 = () => {
+            rgb1 = hexValues();
+            btn1.innerText = rgb1;
+            document.body.style.backgroundImage= `linear-gradient(to right, ${rgb1},${rgb2})`;
+            copydiv.innerHTML = `backgroundImage:linear-gradient(to right, ${rgb1},${rgb2})`;
+            
+        };
+        const handleButton2 = () => {
+            rgb2 = hexValues();
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage= `linear-gradient(to right, ${rgb1},${rgb2})`;
+            copydiv.innerHTML = `backgroundImage:linear-gradient(to right, ${rgb1},${rgb2})`;
+            
+        };
+
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+
+        copydiv.addEventListener('click',()=>{
+            navigator.clipboard.writeText(copydiv.innerText);
+            let alertBox = document.createElement("div");
+            alertBox.innerText = "Copied";
+            alertBox.style.position = "fixed";
+            alertBox.style.top = "20px";
+            alertBox.style.left = "50%";
+            
+
+            document.body.appendChild(alertBox);
+
+            setTimeout(() => {
+                alertBox.remove();
+            }, 1000);
+
+            
+
+        });
+    </script>
+    </body>
+
+</html>
